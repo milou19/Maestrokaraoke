@@ -1,29 +1,33 @@
-import { SingSetup, SongPreview } from 'interfaces';
-import CameraManager from 'modules/Camera/CameraManager';
-import NoPrerender from 'modules/Elements/NoPrerender';
-import { woosh } from 'modules/SoundManager';
-import useFullscreen from 'modules/hooks/useFullscreen';
-import useQueryParam from 'modules/hooks/useQueryParam';
-import startViewTransition from 'modules/utils/startViewTransition';
-import { useState } from 'react';
-import { flushSync } from 'react-dom';
-import { Helmet } from 'react-helmet';
-import SingASong from 'routes/SingASong/SingASong';
-import Singing from './Singing/Singing';
+import { SingSetup, SongPreview } from "interfaces";
+import CameraManager from "modules/Camera/CameraManager";
+import NoPrerender from "modules/Elements/NoPrerender";
+import { woosh } from "modules/SoundManager";
+import useFullscreen from "modules/hooks/useFullscreen";
+import useQueryParam from "modules/hooks/useQueryParam";
+import startViewTransition from "modules/utils/startViewTransition";
+import { useState } from "react";
+import { flushSync } from "react-dom";
+import { Helmet } from "react-helmet";
+import SingASong from "routes/SingASong/SingASong";
+import Singing from "./Singing/Singing";
 
 function Game() {
-  const songId = useQueryParam('song');
+  const songId = useQueryParam("song");
 
-  const [singSetup, setSingSetup] = useState<(SingSetup & { song: SongPreview }) | null>(null);
-  const [preselectedSong, setPreselectedSong] = useState<string | null>(songId ?? null);
+  const [singSetup, setSingSetup] = useState<
+    (SingSetup & { song: SongPreview }) | null
+  >(null);
+  const [preselectedSong, setPreselectedSong] = useState<string | null>(
+    songId ?? null
+  );
   const [resetKey, setResetKey] = useState(0);
   const handleSelect = (setup: SingSetup & { song: SongPreview }) => {
-    const previewVideo = document.getElementById('preview-video-container');
+    const previewVideo = document.getElementById("preview-video-container");
 
     if (previewVideo) {
-      previewVideo.style.viewTransitionName = 'song-preview-video';
+      previewVideo.style.viewTransitionName = "song-preview-video";
       startViewTransition(() => {
-        previewVideo.style.viewTransitionName = '';
+        previewVideo.style.viewTransitionName = "";
         flushSync(() => {
           setSingSetup(setup);
         });
@@ -40,7 +44,9 @@ function Game() {
   return (
     <>
       <Helmet>
-        <title>Game | AllKaraoke.Party - Free Online Karaoke Party Game</title>
+        <title>
+          Game | maestrokaraoke.vercel.app - Free Online Karaoke Party Game
+        </title>
       </Helmet>
       <NoPrerender>
         {singSetup ? (
@@ -58,7 +64,10 @@ function Game() {
             }}
           />
         ) : (
-          <SingASong onSongSelected={handleSelect} preselectedSong={preselectedSong} />
+          <SingASong
+            onSongSelected={handleSelect}
+            preselectedSong={preselectedSong}
+          />
         )}
       </NoPrerender>
     </>

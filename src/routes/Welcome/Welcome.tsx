@@ -1,14 +1,14 @@
-import styled from '@emotion/styled';
-import { Menu } from 'modules/Elements/AKUI/Menu';
-import { useBackground } from 'modules/Elements/BackgroundContext';
-import MenuWithLogo from 'modules/Elements/MenuWithLogo';
-import SmoothLink from 'modules/Elements/SmoothLink';
-import { typography } from 'modules/Elements/cssMixins';
-import useBackgroundMusic from 'modules/hooks/useBackgroundMusic';
-import useKeyboardNav from 'modules/hooks/useKeyboardNav';
-import useSmoothNavigate from 'modules/hooks/useSmoothNavigate';
-import { Helmet } from 'react-helmet';
-import FacebookLink from 'routes/Welcome/FacebookLink';
+import styled from "@emotion/styled";
+import { Menu } from "modules/Elements/AKUI/Menu";
+import { useBackground } from "modules/Elements/BackgroundContext";
+import MenuWithLogo from "modules/Elements/MenuWithLogo";
+import SmoothLink from "modules/Elements/SmoothLink";
+import { typography } from "modules/Elements/cssMixins";
+import useBackgroundMusic from "modules/hooks/useBackgroundMusic";
+import useKeyboardNav from "modules/hooks/useKeyboardNav";
+import useSmoothNavigate from "modules/hooks/useSmoothNavigate";
+import { Helmet } from "react-helmet";
+import FacebookLink from "routes/Welcome/FacebookLink";
 
 function Welcome() {
   useBackground(true);
@@ -20,13 +20,27 @@ function Welcome() {
   return (
     <MenuWithLogo>
       <Helmet>
-        <title>Main Menu | AllKaraoke.Party - Free Online Karaoke Party Game</title>
-        <link rel="preload" href="/songs/index.json" as="fetch" type="application/json" crossOrigin="anonymous" />
-        <link rel="preload" href="/mostPopularSongs.json" as="fetch" type="application/json" crossOrigin="anonymous" />
+        <title>
+          Main Menu | maestrokaraoke.vercel.app - Free Online Karaoke Party Game
+        </title>
+        <link
+          rel="preload"
+          href="/songs/index.json"
+          as="fetch"
+          type="application/json"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/mostPopularSongs.json"
+          as="fetch"
+          type="application/json"
+          crossOrigin="anonymous"
+        />
       </Helmet>
       <BackgroundMusicCredit>
         <span>
-          Bpm data and release year provided by{' '}
+          Bpm data and release year provided by{" "}
           <a target="_blank" href="https://getsongbpm.com/" rel="noreferrer">
             GetSongBPM
           </a>
@@ -34,8 +48,12 @@ function Welcome() {
         <span>Song: Funk Cool Groove (Music Today 80)</span>
         <span>• Composed & Produced by : Anwar Amr</span>
         <span>
-          • Video Link:{' '}
-          <a href="https://youtu.be/FGzzBbYRjFY" target="_blank" rel="noreferrer">
+          • Video Link:{" "}
+          <a
+            href="https://youtu.be/FGzzBbYRjFY"
+            target="_blank"
+            rel="noreferrer"
+          >
             https://youtu.be/FGzzBbYRjFY
           </a>
         </span>
@@ -43,19 +61,33 @@ function Welcome() {
       <FacebookLink />
       <>
         <SmoothLink to="game/">
-          <Menu.Button {...register('sing-a-song', () => navigate('game/'))}>Sing a song</Menu.Button>
+          <Menu.Button {...register("sing-a-song", () => navigate("game/"))}>
+            Sing a song
+          </Menu.Button>
         </SmoothLink>
         <SmoothLink to="select-input/">
-          <Menu.Button {...register('select-input', () => navigate('select-input/'))}>Setup Microphones</Menu.Button>
+          <Menu.Button
+            {...register("select-input", () => navigate("select-input/"))}
+          >
+            Setup Microphones
+          </Menu.Button>
         </SmoothLink>
         <SmoothLink to="settings/">
-          <Menu.Button {...register('settings', () => navigate('settings/'))}>Settings</Menu.Button>
+          <Menu.Button {...register("settings", () => navigate("settings/"))}>
+            Settings
+          </Menu.Button>
         </SmoothLink>
         <SmoothLink to="jukebox/">
-          <Menu.Button {...register('jukebox', () => navigate('jukebox/'))}>Jukebox</Menu.Button>
+          <Menu.Button {...register("jukebox", () => navigate("jukebox/"))}>
+            Jukebox
+          </Menu.Button>
         </SmoothLink>
         <SmoothLink to="manage-songs/">
-          <Menu.Button {...register('manage-songs', () => navigate('manage-songs/'))}>Manage Songs</Menu.Button>
+          <Menu.Button
+            {...register("manage-songs", () => navigate("manage-songs/"))}
+          >
+            Manage Songs
+          </Menu.Button>
         </SmoothLink>
       </>
     </MenuWithLogo>

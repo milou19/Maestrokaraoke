@@ -1,18 +1,18 @@
-import styled from '@emotion/styled';
-import { focused, typography } from 'modules/Elements/cssMixins';
-import styles from 'modules/GameEngine/Drawing/styles';
-import RemoteMicServer from 'modules/RemoteMic/Network/Server';
-import useQueryParam from 'modules/hooks/useQueryParam';
-import * as qrcode from 'qrcode.react';
-import { useEffect } from 'react';
-import { useRoute } from 'wouter';
+import styled from "@emotion/styled";
+import { focused, typography } from "modules/Elements/cssMixins";
+import styles from "modules/GameEngine/Drawing/styles";
+import RemoteMicServer from "modules/RemoteMic/Network/Server";
+import useQueryParam from "modules/hooks/useQueryParam";
+import * as qrcode from "qrcode.react";
+import { useEffect } from "react";
+import { useRoute } from "wouter";
 
 const { QRCodeSVG } = qrcode;
 
 function RoomCode({ gameCode, ...props }: { gameCode: string }) {
   return (
     <GameCode {...props}>
-      {gameCode.split('').map((letter, i) => (
+      {gameCode.split("").map((letter, i) => (
         <span key={i}>{letter}</span>
       ))}
     </GameCode>
@@ -23,8 +23,8 @@ function ConnectRemoteMic() {
   const linkObject = new URL(global.location?.href);
 
   // Validate if the component is rendered in a remote mic or in the "main" game via the URL
-  const [match] = useRoute('remote-mic');
-  const gameCode = useQueryParam('room') ?? RemoteMicServer.getGameCode();
+  const [match] = useRoute("remote-mic");
+  const gameCode = useQueryParam("room") ?? RemoteMicServer.getGameCode();
   linkObject.pathname = `${import.meta.env.BASE_URL}remote-mic`;
   linkObject.search = `room=${gameCode}`;
 
@@ -53,10 +53,10 @@ function ConnectRemoteMic() {
           </h3>
           <ol>
             <li>
-              Go to{' '}
+              Go to{" "}
               <a href={linkObject.origin} target="_blank" rel="noreferrer">
-                allkaraoke.party
-              </a>{' '}
+                maestrokaraoke.vercel.app
+              </a>{" "}
               on your phone
             </li>
             <li>
@@ -75,7 +75,8 @@ function ConnectRemoteMic() {
             <CopyButton
               onClick={() => {
                 navigator.clipboard.writeText(link);
-              }}>
+              }}
+            >
               Copy
             </CopyButton>
           </InputCopyContainer>

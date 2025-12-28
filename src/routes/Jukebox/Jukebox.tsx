@@ -1,20 +1,20 @@
-import styled from '@emotion/styled';
-import { shuffle } from 'es-toolkit';
-import { SongPreview } from 'interfaces';
-import { useBackground } from 'modules/Elements/BackgroundContext';
-import { Button } from 'modules/Elements/Button';
-import NoPrerender from 'modules/Elements/NoPrerender';
-import SmoothLink from 'modules/Elements/SmoothLink';
-import VideoPlayer, { VideoState } from 'modules/Elements/VideoPlayer';
-import useSongIndex from 'modules/Songs/hooks/useSongIndex';
-import useBackgroundMusic from 'modules/hooks/useBackgroundMusic';
-import useKeyboardNav from 'modules/hooks/useKeyboardNav';
-import useSmoothNavigate, { buildUrl } from 'modules/hooks/useSmoothNavigate';
-import useViewportSize from 'modules/hooks/useViewportSize';
-import { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
-import LayoutGame from 'routes/LayoutGame';
-import SongPage from '../Game/SongPage';
+import styled from "@emotion/styled";
+import { shuffle } from "es-toolkit";
+import { SongPreview } from "interfaces";
+import { useBackground } from "modules/Elements/BackgroundContext";
+import { Button } from "modules/Elements/Button";
+import NoPrerender from "modules/Elements/NoPrerender";
+import SmoothLink from "modules/Elements/SmoothLink";
+import VideoPlayer, { VideoState } from "modules/Elements/VideoPlayer";
+import useSongIndex from "modules/Songs/hooks/useSongIndex";
+import useBackgroundMusic from "modules/hooks/useBackgroundMusic";
+import useKeyboardNav from "modules/hooks/useKeyboardNav";
+import useSmoothNavigate, { buildUrl } from "modules/hooks/useSmoothNavigate";
+import useViewportSize from "modules/hooks/useViewportSize";
+import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
+import LayoutGame from "routes/LayoutGame";
+import SongPage from "../Game/SongPage";
 
 function Jukebox() {
   useBackground(false);
@@ -25,20 +25,30 @@ function Jukebox() {
   const songList = useSongIndex();
 
   const [shuffledList, setShuffledList] = useState<SongPreview[]>([]);
-  const { register } = useKeyboardNav({ onBackspace: () => navigate('menu/') });
+  const { register } = useKeyboardNav({ onBackspace: () => navigate("menu/") });
 
-  useEffect(() => songList.data && setShuffledList(shuffle(songList.data)), [songList.data]);
+  useEffect(
+    () => songList.data && setShuffledList(shuffle(songList.data)),
+    [songList.data]
+  );
 
-  const playNext = () => songList.data && setCurrentlyPlaying((current) => (current + 1) % songList.data.length);
+  const playNext = () =>
+    songList.data &&
+    setCurrentlyPlaying((current) => (current + 1) % songList.data.length);
 
   if (!shuffledList.length || !width || !height) return null;
 
-  const navigateUrl = buildUrl(`game/`, { song: shuffledList[currentlyPlaying].id, playlist: 'All' });
+  const navigateUrl = buildUrl(`game/`, {
+    song: shuffledList[currentlyPlaying].id,
+    playlist: "All",
+  });
 
   return (
     <LayoutGame>
       <Helmet>
-        <title>Jukebox | AllKaraoke.Party - Free Online Karaoke Party Game</title>
+        <title>
+          Jukebox | maestrokaraoke.vercel.app - Free Online Karaoke Party Game
+        </title>
       </Helmet>
       <NoPrerender>
         <SongPage
@@ -60,10 +70,20 @@ function Jukebox() {
                 if (state === VideoState.ENDED) playNext();
               }}
             />
-          }>
-          <SkipSongButton {...register('skip-button', playNext)}>Skip</SkipSongButton>
+          }
+        >
+          <SkipSongButton {...register("skip-button", playNext)}>
+            Skip
+          </SkipSongButton>
           <SmoothLink to={navigateUrl}>
-            <PlayThisSongButton {...register('sing-button', () => navigate(navigateUrl), undefined, true)}>
+            <PlayThisSongButton
+              {...register(
+                "sing-button",
+                () => navigate(navigateUrl),
+                undefined,
+                true
+              )}
+            >
               Sing this song
             </PlayThisSongButton>
           </SmoothLink>

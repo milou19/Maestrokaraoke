@@ -1,4 +1,4 @@
-# [Karaoke in the browser - click here to play online](https://allkaraoke.party/)
+# [Karaoke in the browser - click here to play online](https://maestrokaraoke.vercel.app/)
 
 ## Getting started
 

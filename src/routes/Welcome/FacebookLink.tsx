@@ -1,7 +1,10 @@
-import styled from '@emotion/styled';
-import { MenuContainer } from 'modules/Elements/Menu';
-import { useCallback, useEffect, useState } from 'react';
-import { MobilePhoneModeSetting, useSettingValue } from 'routes/Settings/SettingsState';
+import styled from "@emotion/styled";
+import { MenuContainer } from "modules/Elements/Menu";
+import { useCallback, useEffect, useState } from "react";
+import {
+  MobilePhoneModeSetting,
+  useSettingValue,
+} from "routes/Settings/SettingsState";
 
 const FBEmbedCode = (width: number, height: number) => {
   const settings = {
@@ -18,9 +21,9 @@ const FBEmbedCode = (width: number, height: number) => {
 
   const qs = Object.entries(settings)
     .map(([k, v]) => `${k}=${String(v)}`)
-    .join('&');
+    .join("&");
   return `
-<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fallkaraoke.party&${qs}" width="${width}" height="${height}" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fmaestrokaraoke.vercel.app&${qs}" width="${width}" height="${height}" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 `;
 };
 function FacebookLink() {
@@ -48,12 +51,14 @@ function FacebookLink() {
         dangerouslySetInnerHTML={{ __html: FBEmbedCode(450, 750) }}
         style={{
           height: 750 * (width / 350),
-          width: '100%',
-          transformOrigin: 'left top',
+          width: "100%",
+          transformOrigin: "left top",
           transform: `scale(${width / 450})`,
         }}
       />
-      <h5 ref={fbRef}>Get updates, and help by suggesting features and reporting bugs.</h5>
+      <h5 ref={fbRef}>
+        Get updates, and help by suggesting features and reporting bugs.
+      </h5>
     </Container>
   );
 }
